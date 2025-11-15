@@ -21,6 +21,7 @@ TESTTYPE    := TB
 TOP         := tb_top
 
 DEFINITION  := -L uvm
+DEFINITION  += -d USE_AXI
 
 UVM_VERBOSITY ?= UVM_LOW
 

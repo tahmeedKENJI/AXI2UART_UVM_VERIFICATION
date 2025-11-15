@@ -1,0 +1,3 @@
+[submodule "sub/uvm_practice"]
+	path = sub/uvm_practice
+	url = https://github.com/DSi-VLSI/UVM_PRACTICE.git

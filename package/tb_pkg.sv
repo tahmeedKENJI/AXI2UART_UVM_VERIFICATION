@@ -15,5 +15,7 @@ package tb_pkg;
         PARITY,
         STOP
     } uart_state_t;
+
+    typedef logic [7:0] serial_to_parallel_t;
     
 endpackage

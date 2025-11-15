@@ -5,6 +5,7 @@ class simple_env extends uvm_env;
     `uvm_component_utils(simple_env)
 
     tb_agent u_tb_agent;
+    uart_agent u_uart_agent;
     simple_scoreboard u_scoreboard;
 
     function new(string name="simple_env", uvm_component parent=null);
@@ -15,12 +16,15 @@ class simple_env extends uvm_env;
         super.build_phase(phase);
 
         u_tb_agent = tb_agent::type_id::create("u_tb_agent", this);
+        u_uart_agent = uart_agent::type_id::create("u_uart_agent", this);
         u_scoreboard = simple_scoreboard::type_id::create("u_scoreboard", this);
     endfunction
 
     virtual function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
         u_tb_agent.u_tb_monitor.tb_analysis_port.connect(u_scoreboard.tb_analysis_imp);
+        u_uart_agent.u_uart_monitor.rx_analysis_port.connect(u_scoreboard.rx_analysis_imp);
+        u_uart_agent.u_uart_monitor.tx_analysis_port.connect(u_scoreboard.tx_analysis_imp);
     endfunction
 
 endclass

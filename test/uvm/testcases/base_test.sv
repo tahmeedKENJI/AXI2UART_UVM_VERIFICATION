@@ -5,8 +5,8 @@ class base_test extends uvm_test;
     `uvm_component_utils(base_test)
 
     simple_env u_env;
-    virtual uart_intf u_uart_intf;
-
+    virtual tb_intf u_tb_intf;
+    
     function new(string name="base_test", uvm_component parent=null);
         super.new(name, parent);
     endfunction
@@ -15,9 +15,8 @@ class base_test extends uvm_test;
         super.build_phase(phase);
 
         u_env = simple_env::type_id::create("u_env", this);
-
-        if (!uvm_config_db #(virtual uart_intf)::get(this, "", "uart_intf", u_uart_intf)) begin
-            `uvm_error(get_name(), "UART Interface NOT FOUND")
+        if(!uvm_config_db#(virtual tb_intf)::get(this, "", "tb_intf", u_tb_intf)) begin
+            `uvm_error(get_name(), "Testbench Interface NOT FOUND")
         end
     endfunction
 
@@ -26,8 +25,9 @@ class base_test extends uvm_test;
         phase.raise_objection(this);
         apply_reset();
         #100ns;
-        u_uart_intf.send_rx(8'h9B);
-        #100ns;
+        send_to_rx(8'h5B, '0);
+        send_to_rx(8'h9B, '0);
+        repeat (10000) @(posedge u_tb_intf.clk);
         phase.drop_objection(this);
     endtask
 
@@ -35,6 +35,15 @@ class base_test extends uvm_test;
         apply_reset_sequence u_apply_reset_sequence;
         u_apply_reset_sequence = apply_reset_sequence::type_id::create("u_apply_reset_sequence");
         u_apply_reset_sequence.start(u_env.u_tb_agent.u_tb_sequencer);
+    endtask
+
+    task send_to_rx(serial_to_parallel_t array, logic isRandom);
+        send_rx_sequence u_seq;
+        u_seq = send_rx_sequence::type_id::create("u_seq");
+
+        u_seq.isRandomData = isRandom;
+        u_seq.data = array;
+        u_seq.start(u_env.u_uart_agent.u_uart_sequencer);
     endtask
 
 endclass

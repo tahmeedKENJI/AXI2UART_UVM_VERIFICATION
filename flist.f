@@ -56,8 +56,11 @@ ${ROOT_D}/test/uvm/interfaces/uart_intf.sv
 ${ROOT_D}/test/uvm/seq_items/tb_seq_item.sv
 ${ROOT_D}/test/uvm/seq_items/uart_tx_seq_item.sv
 ${ROOT_D}/test/uvm/seq_items/uart_rx_seq_item.sv
+${ROOT_D}/test/uvm/seq_items/reg_req_seq_item.sv
+${ROOT_D}/test/uvm/seq_items/reg_rsp_seq_item.sv
 ${ROOT_D}/test/uvm/sequences/apply_reset_sequence.sv
 ${ROOT_D}/test/uvm/sequences/send_rx_sequence.sv
+${ROOT_D}/test/uvm/sequences/send_axi_sequence.sv
 ${ROOT_D}/test/uvm/components/tb/tb_sequencer.sv
 ${ROOT_D}/test/uvm/components/tb/tb_driver.sv
 ${ROOT_D}/test/uvm/components/tb/tb_monitor.sv
@@ -66,6 +69,10 @@ ${ROOT_D}/test/uvm/components/uart/uart_monitor.sv
 ${ROOT_D}/test/uvm/components/uart/uart_sequencer.sv
 ${ROOT_D}/test/uvm/components/uart/uart_driver.sv
 ${ROOT_D}/test/uvm/components/uart/uart_agent.sv
+${ROOT_D}/test/uvm/components/axi/axi_monitor.sv
+${ROOT_D}/test/uvm/components/axi/axi_sequencer.sv
+${ROOT_D}/test/uvm/components/axi/axi_driver.sv
+${ROOT_D}/test/uvm/components/axi/axi_agent.sv
 ${ROOT_D}/test/uvm/scoreboards/simple_scoreboard.sv
 ${ROOT_D}/test/uvm/environments/simple_env.sv
 ${ROOT_D}/test/uvm/testcases/base_test.sv

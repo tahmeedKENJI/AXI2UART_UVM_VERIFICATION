@@ -76,9 +76,9 @@ interface uart_intf;
                 end
             end else if (send_rx_state == tb_pkg::PARITY) begin
                 if (parityType) begin
-                    rx <= (^data);
-                end else begin
                     rx <= ~(^data);
+                end else begin
+                    rx <= (^data);
                 end
                 send_rx_state <= STOP;
                 #(time_period);
@@ -118,12 +118,12 @@ interface uart_intf;
                 end
             end else if (recv_rx_state == tb_pkg::PARITY) begin
                 if (parityType) begin
-                    if (rx != (^data)) begin
+                    if (rx != ~(^data)) begin
                         `uvm_error("UART_INTF", "Rx Parity bit violation");
                         parityOK = '0;
                     end else parityOK = '1;
                 end else begin
-                    if (rx != ~(^data)) begin
+                    if (rx != (^data)) begin
                         `uvm_error("UART_INTF", "Rx Parity bit violation");
                         parityOK = '0;
                     end else parityOK = '1;
@@ -161,12 +161,12 @@ interface uart_intf;
                 end
             end else if (tx_state == tb_pkg::PARITY) begin
                 if (parityType) begin
-                    if (tx != (^data)) begin
+                    if (tx != ~(^data)) begin
                         `uvm_error("UART_INTF", "Tx Parity bit violation");
                         parityOK = '0;
                     end else parityOK = '1;
                 end else begin
-                    if (tx != ~(^data)) begin
+                    if (tx != (^data)) begin
                         `uvm_error("UART_INTF", "Tx Parity bit violation");
                         parityOK = '0;
                     end else parityOK = '1;

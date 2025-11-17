@@ -115,4 +115,7 @@ interface axi_intf (
 
     endtask
 
+    task watch_aw(output axi_addr_t addr);
+    endtask
+
 endinterface

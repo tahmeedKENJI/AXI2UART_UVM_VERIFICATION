@@ -8,5 +8,10 @@ class reg_rsp_seq_item extends uvm_sequence_item;
         super.new(name);
     endfunction
     
+    logic isWrite;
+    
+    axi_data_t data;
+    axi_resp_t resp;
+
 endclass
 

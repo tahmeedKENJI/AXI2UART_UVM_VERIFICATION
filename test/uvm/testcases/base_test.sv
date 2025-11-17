@@ -6,7 +6,6 @@ class base_test extends uvm_test;
 
     simple_env u_env;
     virtual tb_intf u_tb_intf;
-    virtual axi_intf u_axi_intf;
     
     function new(string name="base_test", uvm_component parent=null);
         super.new(name, parent);
@@ -19,42 +18,39 @@ class base_test extends uvm_test;
         if(!uvm_config_db#(virtual tb_intf)::get(this, "", "tb_intf", u_tb_intf)) begin
             `uvm_error(get_name(), "Testbench Interface NOT FOUND")
         end
-        if(!uvm_config_db#(virtual axi_intf)::get(this, "", "axi_intf", u_axi_intf)) begin
-            `uvm_error(get_name(), "AXI Interface NOT FOUND")
-        end
     endfunction
 
     virtual task run_phase(uvm_phase phase);
-        axi_data_t r_data;
         super.run_phase(phase);
         phase.raise_objection(this);
         apply_reset();
         #100ns;
-
+    
         fork
             begin
                 send_axi_write(8'h00, 32'b1);
+                send_axi_write(8'h04, 32'b1);
             end
             begin
-                send_axi_read(8'h08, r_data);
+                send_axi_read(8'h08);
             end
         join
-
-        #100ns
 
         fork
             begin
-                send_axi_write(8'h14, 8'h59);
+                send_axi_write(8'h14, 32'h59);
+                send_multi_axi_write(8'h14, 1);
             end
             begin
-                axi_data_t rx_data;
                 send_to_rx(8'h1B, '0);
-                send_axi_read(8'h18, rx_data);
+                // send_axi_read(8'h18);
                 send_to_rx(8'h9B, '0);
-                send_axi_read(8'h18, rx_data);
+                // send_axi_read(8'h18);
+                send_multi_axi_read(8'h18, 1);
             end
         join
-        repeat (10000) @(posedge u_tb_intf.clk);
+
+        repeat (200000) @(posedge u_tb_intf.clk);
         phase.drop_objection(this);
     endtask
 
@@ -73,59 +69,48 @@ class base_test extends uvm_test;
         u_seq.start(u_env.u_uart_agent.u_uart_sequencer);
     endtask
 
-    task send_axi_read(axi_addr_t addr, axi_data_t data);
-        axi_data_t data_array [];
-        axi_resp_t resp_array [];
-        int len = 0;
-
-        data_array = new[len + 1];
-        resp_array = new[len + 1];
-
-        u_axi_intf.mstr_read_xactn(addr, len, 2, 1, data_array, resp_array);
-
-        data = data_array[0];
-    endtask
-
-    task test_axi_read(axi_addr_t addr, int len);
-        axi_data_t u_data [];
-        axi_resp_t u_resp [];
-
-        u_data = new[len + 1];
-        u_resp = new[len + 1];
-
-        u_axi_intf.mstr_read_xactn(addr, len, 2, 1, u_data, u_resp);
-    endtask
-
     task send_axi_write(axi_addr_t addr, axi_data_t data);
-        axi_data_t data_array [];
-        axi_strb_t strb_array [];
-        axi_resp_t resp;
-        int len = 0;
+        send_axi_sequence u_seq;
+        u_seq = send_axi_sequence::type_id::create("u_seq_write");
 
-        data_array = new[len + 1];
-        strb_array = new[len + 1];
-
-        data_array[0] = data;
-        strb_array[0] = '1;
-
-        u_axi_intf.mstr_write_xactn(addr, len, 2, 1, data_array, strb_array, resp);
-
+        u_seq.isTest = '0;
+        u_seq.isWrite = '1;
+        u_seq.addr = addr;
+        u_seq.data = data;
+        u_seq.start(u_env.u_axi_agent.u_axi_w_sequencer);
     endtask
 
-    task test_axi_write(axi_addr_t addr, int len);
-        axi_data_t u_data [];
-        axi_strb_t u_strb [];
-        axi_resp_t u_resp;
+    task send_multi_axi_write(axi_addr_t addr, int len);
+        send_axi_sequence u_seq;
+        u_seq = send_axi_sequence::type_id::create("u_seq_write");
 
-        u_data = new[len + 1];
-        u_strb = new[len + 1];
+        u_seq.isTest = '1;
+        u_seq.len = len;
+        u_seq.isWrite = '1;
+        u_seq.addr = addr;
+        u_seq.data = $urandom;
+        u_seq.start(u_env.u_axi_agent.u_axi_w_sequencer);
+    endtask
 
-        for (int i = 0; i <= len; i++) begin
-            u_data[i] =  $urandom;
-            u_strb[i] = '1;
-        end
+    task send_axi_read(axi_addr_t addr);
+        send_axi_sequence u_seq;
+        u_seq = send_axi_sequence::type_id::create("u_seq_read");
 
-        u_axi_intf.mstr_write_xactn(addr, len, 2, 1, u_data, u_strb, u_resp);
+        u_seq.isTest = '0;
+        u_seq.isWrite = '0;
+        u_seq.addr = addr;
+        u_seq.start(u_env.u_axi_agent.u_axi_r_sequencer);
+    endtask
+
+    task send_multi_axi_read(axi_addr_t addr, int len);
+        send_axi_sequence u_seq;
+        u_seq = send_axi_sequence::type_id::create("u_seq_read");
+
+        u_seq.isTest = '1;
+        u_seq.len = len;
+        u_seq.isWrite = '0;
+        u_seq.addr = addr;
+        u_seq.start(u_env.u_axi_agent.u_axi_r_sequencer);
     endtask
 
 endclass

@@ -8,9 +8,12 @@ class reg_req_seq_item extends uvm_sequence_item;
         super.new(name);
     endfunction
     
-    logic [tb_pkg::ADDR_WIDTH-1:0] addr;
-    logic [tb_pkg::DATA_WIDTH-1:0] data;
-    logic [tb_pkg::STRB_WIDTH-1:0] strb;
+    logic isTest;
+    logic isWrite;
+    int len;
+
+    axi_addr_t addr;
+    axi_data_t data;
 
 endclass
 

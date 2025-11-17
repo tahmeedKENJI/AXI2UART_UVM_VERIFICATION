@@ -53,7 +53,7 @@ module uvm_tb_top;
             parityEnable : '1,
             parityType : '0,
             numDataBits : 8,
-            numStopBits : 2,
+            numStopBits : 1,
             baudRate : 9600
         };
         u_uart_intf.configure_uart('0, uart_config);

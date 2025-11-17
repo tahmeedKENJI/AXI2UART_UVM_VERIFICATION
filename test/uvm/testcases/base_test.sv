@@ -46,6 +46,7 @@ class base_test extends uvm_test;
                 // send_axi_read(8'h18);
                 send_to_rx(8'h9B, '0);
                 // send_axi_read(8'h18);
+                @(posedge u_tb_intf.clk);
                 send_multi_axi_read(8'h18, 1);
             end
         join

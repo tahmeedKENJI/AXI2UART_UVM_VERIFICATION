@@ -41,17 +41,21 @@ class uart_monitor extends uvm_monitor;
     endtask
 
     task sample_tx();
+        logic parityOK;
+
         tx_item = uart_tx_seq_item::type_id::create("uart_tx_mon_item");
         forever begin
-            u_uart_intf.recv_tx(tx_item.tx_array);
+            u_uart_intf.recv_tx(tx_item.tx_array, parityOK);
             tx_analysis_port.write(tx_item);
         end
     endtask
 
     task sample_rx();
+        logic parityOK;
+
         rx_item = uart_rx_seq_item::type_id::create("uart_rx_mon_item");
         forever begin
-            u_uart_intf.recv_rx(rx_item.rx_array);
+            u_uart_intf.recv_rx(rx_item.rx_array, parityOK);
             rx_analysis_port.write(rx_item);
         end
     endtask

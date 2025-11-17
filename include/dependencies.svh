@@ -7,7 +7,7 @@
 import uvm_pkg::*;
 import tb_pkg::*;
 
-`AXI_TYPEDEF_ALL(tb_uvm_axi, logic [ADDR_WIDTH-1:0], logic [ID_WIDTH-1:0], logic [DATA_WIDTH-1:0], logic [STRB_WIDTH-1:0], logic [USER_WIDTH-1:0])
+`AXI_TYPEDEF_ALL(tb_uvm_axi, axi_addr_t, axi_id_t, axi_data_t, axi_strb_t, axi_user_t)
 
 `endif
 

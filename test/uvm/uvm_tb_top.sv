@@ -50,10 +50,11 @@ module uvm_tb_top;
         if (!$value$plusargs("CLKFREQMHZ=%d", clk_freq_MHz)) clk_freq_MHz = 100;
 
         uart_config = '{
-            parityEnable : '0,
+            parityEnable : '1,
             parityType : '0,
+            numDataBits : 8,
             numStopBits : 2,
-            baudRate : 115200
+            baudRate : 9600
         };
         u_uart_intf.configure_uart('0, uart_config);
 

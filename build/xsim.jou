@@ -1,0 +1,30 @@
+#-----------------------------------------------------------
+# xsim v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Mon Nov 17 17:23:18 2025
+# Process ID         : 14928
+# Current directory  : /home/tahmeed/Desktop/modifications/AXI2UART_UVM_VERIFICATION/build
+# Command line       : xsim -source {xsim.dir/uvm_tb_top/xsim_script.tcl}
+# Log file           : /home/tahmeed/Desktop/modifications/AXI2UART_UVM_VERIFICATION/build/xsim.log
+# Journal file       : /home/tahmeed/Desktop/modifications/AXI2UART_UVM_VERIFICATION/build/xsim.jou
+# Running On         : 817-tahmeed
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.3 LTS
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+# CPU Frequency      : 3006.384 MHz
+# CPU Physical cores : 4
+# CPU Logical cores  : 8
+# Host memory        : 16480 MB
+# Swap memory        : 4294 MB
+# Total Virtual      : 20775 MB
+# Available Virtual  : 18309 MB
+#-----------------------------------------------------------
+start_gui
+source xsim.dir/uvm_tb_top/xsim_script.tcl
+add_wave {{/uvm_tb_top/u_axi_intf/clk}} {{/uvm_tb_top/u_axi_intf/axi_req}} {{/uvm_tb_top/u_axi_intf/axi_resp}} 
+current_wave_config {Untitled 1}
+add_wave {{/uvm_tb_top/u_uart_intf/tx}} {{/uvm_tb_top/u_uart_intf/rx}} {{/uvm_tb_top/u_uart_intf/tx_state}} {{/uvm_tb_top/u_uart_intf/send_rx_state}} {{/uvm_tb_top/u_uart_intf/recv_rx_state}} {{/uvm_tb_top/u_uart_intf/parityEnable}} {{/uvm_tb_top/u_uart_intf/parityType}} {{/uvm_tb_top/u_uart_intf/numDataBits}} {{/uvm_tb_top/u_uart_intf/numStopBits}} {{/uvm_tb_top/u_uart_intf/baudRate}} {{/uvm_tb_top/u_uart_intf/time_period}} {{/uvm_tb_top/u_uart_intf/isConfigured}} 
+run all
+close_sim

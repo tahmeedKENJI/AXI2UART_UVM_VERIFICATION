@@ -1,0 +1,7 @@
+Running: xsim.dir/uvm_tb_top/xsimk -simmode gui -testplusarg UVM_VERBOSITY=UVM_LOW -testplusarg TESTNAME= -testplusarg CLKFREQMHZ= -wdb uvm_tb_top.wdb -simrunnum 0 -socket 36269
+Design successfully loaded
+Design Loading Memory Usage: 201232 KB (Peak: 201232 KB)
+Design Loading CPU Usage: 1550 ms
+Simulation completed
+Simulation Memory Usage: 297888 KB (Peak: 340500 KB)
+Simulation CPU Usage: 35770 ms

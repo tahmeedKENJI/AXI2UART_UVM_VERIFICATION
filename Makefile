@@ -20,11 +20,8 @@ LOG      := ${ROOT_D}/log.debug
 TESTTYPE    := TB
 TOP         := tb_top
 
-UART_CFG    ?= UART_DEFAULT_CONFIG
-
 DEFINITION  := -L uvm
 DEFINITION  += -d USE_AXI
-DEFINITION  += -d ${UART_CFG}
 
 UVM_VERBOSITY ?= UVM_LOW
 

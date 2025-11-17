@@ -11,20 +11,33 @@ interface uart_intf;
 
     logic parityEnable;
     logic parityType; // 0: odd, 1: even
-    logic numStopBits;
-    int time_period = 10e9 / BAUD_RATE;
+    logic [1:0] numStopBits;
+    int time_period;
 
-    `ifdef UART_DEFAULT_CONFIG
-    initial begin
-        parityEnable = uart_default_config.parityEnable;
-        parityType   = uart_default_config.parityType;
-        numStopBits  = uart_default_config.numStopBits;
-        time_period  = 10e9 / uart_default_config.baudRate;
-    end
-    `endif
+    logic isConfigured;
+
+    task configure_uart(logic isDefault, 
+                        uart_config_t _uart_config);
+
+        isConfigured = '1;
+
+        if (isDefault) begin
+            parityEnable = uart_default_config.parityEnable;
+            parityType = uart_default_config.parityType;
+            numStopBits = uart_default_config.numStopBits;
+            time_period = 10e9 / uart_default_config.baudRate;
+        end else begin
+            parityEnable = _uart_config.parityEnable;
+            parityType = _uart_config.parityType;
+            numStopBits = _uart_config.numStopBits;
+            time_period = 10e9 / _uart_config.baudRate;
+        end
+    endtask
 
     task send_rx(logic [7:0] data);
         // send_rx_state = START;
+
+        if (!isConfigured) `uvm_fatal("UART_INTF", "UART NOT CONFIGURED!!!")
 
         while (1) begin
             if (send_rx_state == tb_pkg::IDLE) begin
@@ -45,15 +58,18 @@ interface uart_intf;
                     #(time_period);
                 end
             end else if (send_rx_state == STOP) begin
-                rx <= '1;
-                send_rx_state <= tb_pkg::IDLE;
-                #(time_period);
+                for(int i = 0; i < numStopBits; i++) begin
+                    rx <= '1;
+                    send_rx_state <= tb_pkg::IDLE;
+                    #(time_period);
+                end
                 break;
             end
         end
     endtask
 
     task recv_rx(output logic [7:0] data);
+        if (!isConfigured) `uvm_fatal("UART_INTF", "UART NOT CONFIGURED!!!")
         @(negedge rx);
         while (1) begin
             if (recv_rx_state == tb_pkg::IDLE) begin
@@ -85,6 +101,7 @@ interface uart_intf;
     endtask
 
     task recv_tx(output logic [7:0] data);
+        if (!isConfigured) `uvm_fatal("UART_INTF", "UART NOT CONFIGURED!!!")
         @(negedge tx);
         while (1) begin
             if (tx_state == tb_pkg::IDLE) begin

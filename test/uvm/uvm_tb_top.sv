@@ -3,6 +3,7 @@
 module uvm_tb_top;
 
     logic clk;
+    uart_config_t uart_config;
 
     tb_intf u_tb_intf (
         .clk        (clk)
@@ -47,6 +48,14 @@ module uvm_tb_top;
 
         if (!$value$plusargs("TESTNAME=%s", testname)) testname = "base_test";
         if (!$value$plusargs("CLKFREQMHZ=%d", clk_freq_MHz)) clk_freq_MHz = 100;
+
+        uart_config = '{
+            parityEnable : '0,
+            parityType : '0,
+            numStopBits : 2,
+            baudRate : 115200
+        };
+        u_uart_intf.configure_uart('0, uart_config);
 
         uvm_config_db #(virtual tb_intf)::set(null, "*", "tb_intf", u_tb_intf);
         uvm_config_db #(virtual axi_intf)::set(null, "*", "axi_intf", u_axi_intf);

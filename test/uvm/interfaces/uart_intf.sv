@@ -29,14 +29,14 @@ interface uart_intf;
             numDataBits = uart_default_config.numDataBits;
             numStopBits = uart_default_config.numStopBits;
             baudRate = uart_default_config.baudRate;
-            time_period = 10e9 / uart_default_config.baudRate;
+            time_period = 1e9 / uart_default_config.baudRate;
         end else begin
             parityEnable = _uart_config.parityEnable;
             parityType = _uart_config.parityType;
             numDataBits = _uart_config.numDataBits;
             numStopBits = _uart_config.numStopBits;
             baudRate = _uart_config.baudRate;
-            time_period = 10e9 / _uart_config.baudRate;
+            time_period = 1e9 / _uart_config.baudRate;
         end
     endtask
 
@@ -76,9 +76,9 @@ interface uart_intf;
                 end
             end else if (send_rx_state == tb_pkg::PARITY) begin
                 if (parityType) begin
-                    rx <= ~(^data);
-                end else begin
                     rx <= (^data);
+                end else begin
+                    rx <= ~(^data);
                 end
                 send_rx_state <= STOP;
                 #(time_period);
@@ -118,12 +118,12 @@ interface uart_intf;
                 end
             end else if (recv_rx_state == tb_pkg::PARITY) begin
                 if (parityType) begin
-                    if (rx != ~(^data)) begin
+                    if (rx != (^data)) begin
                         `uvm_error("UART_INTF", "Rx Parity bit violation");
                         parityOK = '0;
                     end else parityOK = '1;
                 end else begin
-                    if (rx != (^data)) begin
+                    if (rx != ~(^data)) begin
                         `uvm_error("UART_INTF", "Rx Parity bit violation");
                         parityOK = '0;
                     end else parityOK = '1;
@@ -161,12 +161,12 @@ interface uart_intf;
                 end
             end else if (tx_state == tb_pkg::PARITY) begin
                 if (parityType) begin
-                    if (rx != ~(^data)) begin
+                    if (tx != (^data)) begin
                         `uvm_error("UART_INTF", "Tx Parity bit violation");
                         parityOK = '0;
                     end else parityOK = '1;
                 end else begin
-                    if (rx != (^data)) begin
+                    if (tx != ~(^data)) begin
                         `uvm_error("UART_INTF", "Tx Parity bit violation");
                         parityOK = '0;
                     end else parityOK = '1;

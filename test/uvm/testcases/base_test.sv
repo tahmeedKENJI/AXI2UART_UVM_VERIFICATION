@@ -25,12 +25,21 @@ class base_test extends uvm_test;
     endfunction
 
     virtual task run_phase(uvm_phase phase);
+        axi_data_t r_data;
         super.run_phase(phase);
         phase.raise_objection(this);
         apply_reset();
         #100ns;
-        send_axi_write(8'h00, 32'b1);
-    
+
+        fork
+            begin
+                send_axi_write(8'h00, 32'b1);
+            end
+            begin
+                send_axi_read(8'h08, r_data);
+            end
+        join
+
         #100ns
 
         fork
@@ -38,8 +47,11 @@ class base_test extends uvm_test;
                 send_axi_write(8'h14, 8'h59);
             end
             begin
+                axi_data_t rx_data;
                 send_to_rx(8'h1B, '0);
+                send_axi_read(8'h18, rx_data);
                 send_to_rx(8'h9B, '0);
+                send_axi_read(8'h18, rx_data);
             end
         join
         repeat (10000) @(posedge u_tb_intf.clk);
@@ -61,6 +73,29 @@ class base_test extends uvm_test;
         u_seq.start(u_env.u_uart_agent.u_uart_sequencer);
     endtask
 
+    task send_axi_read(axi_addr_t addr, axi_data_t data);
+        axi_data_t data_array [];
+        axi_resp_t resp_array [];
+        int len = 0;
+
+        data_array = new[len + 1];
+        resp_array = new[len + 1];
+
+        u_axi_intf.mstr_read_xactn(addr, len, 2, 1, data_array, resp_array);
+
+        data = data_array[0];
+    endtask
+
+    task test_axi_read(axi_addr_t addr, int len);
+        axi_data_t u_data [];
+        axi_resp_t u_resp [];
+
+        u_data = new[len + 1];
+        u_resp = new[len + 1];
+
+        u_axi_intf.mstr_read_xactn(addr, len, 2, 1, u_data, u_resp);
+    endtask
+
     task send_axi_write(axi_addr_t addr, axi_data_t data);
         axi_data_t data_array [];
         axi_strb_t strb_array [];
@@ -74,6 +109,7 @@ class base_test extends uvm_test;
         strb_array[0] = '1;
 
         u_axi_intf.mstr_write_xactn(addr, len, 2, 1, data_array, strb_array, resp);
+
     endtask
 
     task test_axi_write(axi_addr_t addr, int len);
@@ -89,7 +125,7 @@ class base_test extends uvm_test;
             u_strb[i] = '1;
         end
 
-        u_axi_intf.mstr_write_xactn(8'h00, len, 2, 1, u_data, u_strb, u_resp);
+        u_axi_intf.mstr_write_xactn(addr, len, 2, 1, u_data, u_strb, u_resp);
     endtask
 
 endclass

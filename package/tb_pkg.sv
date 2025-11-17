@@ -17,5 +17,19 @@ package tb_pkg;
     } uart_state_t;
 
     typedef logic [7:0] serial_to_parallel_t;
+
+    typedef struct packed {
+        logic parityEnable;
+        logic parityType;
+        logic [1:0] numStopBits;
+        int baudRate;
+    } uart_config_t;
+
+    uart_config_t uart_default_config = '{
+        parityEnable : 1'b0,
+        parityType   : 1'b0,
+        numStopBits  : 2'd1,
+        baudRate     : 9600
+    };
     
 endpackage

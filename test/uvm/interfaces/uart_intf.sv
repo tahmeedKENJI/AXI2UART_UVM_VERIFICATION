@@ -12,10 +12,20 @@ interface uart_intf;
     logic parityEnable;
     logic parityType; // 0: odd, 1: even
     logic numStopBits;
+    int time_period = 10e9 / BAUD_RATE;
 
-    localparam int time_period = 10e9 / BAUD_RATE;
+    `ifdef UART_DEFAULT_CONFIG
+    initial begin
+        parityEnable = uart_default_config.parityEnable;
+        parityType   = uart_default_config.parityType;
+        numStopBits  = uart_default_config.numStopBits;
+        time_period  = 10e9 / uart_default_config.baudRate;
+    end
+    `endif
 
     task send_rx(logic [7:0] data);
+        // send_rx_state = START;
+
         while (1) begin
             if (send_rx_state == tb_pkg::IDLE) begin
                 rx <= '1;
@@ -38,12 +48,13 @@ interface uart_intf;
                 rx <= '1;
                 send_rx_state <= tb_pkg::IDLE;
                 #(time_period);
-                return;
+                break;
             end
         end
     endtask
 
     task recv_rx(output logic [7:0] data);
+        @(negedge rx);
         while (1) begin
             if (recv_rx_state == tb_pkg::IDLE) begin
                 recv_rx_state <= START;
@@ -68,12 +79,13 @@ interface uart_intf;
                 if (rx != '1) `uvm_error("UART_INTF", "Rx Stop bit violation")
                 `uvm_info("UART_INTF", "SAMPLING STOP", UVM_HIGH)
                 recv_rx_state <= tb_pkg::IDLE;
-                return;
+                break;
             end
         end
     endtask
 
     task recv_tx(output logic [7:0] data);
+        @(negedge tx);
         while (1) begin
             if (tx_state == tb_pkg::IDLE) begin
                 tx_state <= START;
@@ -94,7 +106,7 @@ interface uart_intf;
             end else if (tx_state == STOP) begin
                 if (tx != '1) `uvm_error("UART_INTF", "Tx Stop bit violation")
                 tx_state <= tb_pkg::IDLE;
-                return;
+                break;
             end
         end
     endtask

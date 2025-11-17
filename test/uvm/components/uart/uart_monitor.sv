@@ -41,34 +41,18 @@ class uart_monitor extends uvm_monitor;
     endtask
 
     task sample_tx();
-        logic previousTx;
-
         tx_item = uart_tx_seq_item::type_id::create("uart_tx_mon_item");
         forever begin
-            #(sample_period);
-            if (previousTx === '1 && u_uart_intf.tx === '0) begin
-                `uvm_info(get_name(), "Monitor Tx Sampling", UVM_HIGH)
-                u_uart_intf.recv_tx(tx_item.tx_array);
-                `uvm_info(get_name(), $sformatf("\ntx_item.tx_array: %b\n", tx_item.tx_array), UVM_HIGH)
-                tx_analysis_port.write(tx_item);
-            end
-            previousTx = u_uart_intf.tx;
+            u_uart_intf.recv_tx(tx_item.tx_array);
+            tx_analysis_port.write(tx_item);
         end
     endtask
 
     task sample_rx();
-        logic previousRx;
-
         rx_item = uart_rx_seq_item::type_id::create("uart_rx_mon_item");
         forever begin
-            #(sample_period);
-            if (previousRx === '1 && u_uart_intf.rx === '0) begin
-                `uvm_info(get_name(), "Monitor Rx Sampling", UVM_HIGH)
-                u_uart_intf.recv_rx(rx_item.rx_array);
-                `uvm_info(get_name(), $sformatf("\nrx_item.rx_array: %b\n", rx_item.rx_array), UVM_HIGH)
-                rx_analysis_port.write(rx_item);
-            end
-            previousRx = u_uart_intf.rx;
+            u_uart_intf.recv_rx(rx_item.rx_array);
+            rx_analysis_port.write(rx_item);
         end
     endtask
 

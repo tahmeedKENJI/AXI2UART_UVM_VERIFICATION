@@ -29,7 +29,7 @@ class base_test extends uvm_test;
         fork
             begin
                 send_axi_write(8'h00, 32'b1);
-                send_axi_write(8'h04, 32'b1);
+                send_axi_write(8'h04, 32'h9);
             end
             begin
                 send_axi_read(8'h08);
@@ -39,7 +39,7 @@ class base_test extends uvm_test;
         fork
             begin
                 send_axi_write(8'h14, 32'h59);
-                send_multi_axi_write(8'h14, 1);
+                send_multi_axi_write(8'h14, 14);
             end
             begin
                 send_to_rx(8'h1B, '0);
@@ -47,11 +47,11 @@ class base_test extends uvm_test;
                 send_to_rx(8'h9B, '0);
                 // send_axi_read(8'h18);
                 @(posedge u_tb_intf.clk);
-                send_multi_axi_read(8'h18, 1);
+                send_multi_axi_read(8'h18, 2);
             end
         join
 
-        repeat (200000) @(posedge u_tb_intf.clk);
+        repeat (2000000) @(posedge u_tb_intf.clk);
         phase.drop_objection(this);
     endtask
 

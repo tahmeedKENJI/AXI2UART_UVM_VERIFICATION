@@ -16,8 +16,6 @@ class uart_monitor extends uvm_monitor;
 
     virtual uart_intf u_uart_intf;
 
-    time sample_period = 100ns;
-
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         rx_analysis_port = new("rx_analysis_port", this);

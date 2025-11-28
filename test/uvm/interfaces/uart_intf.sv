@@ -13,6 +13,7 @@ interface uart_intf;
     logic parityType; // 0: odd, 1: even
     logic [3:0] numDataBits;
     logic [1:0] numStopBits;
+    logic rx_int_en;
     int baudRate;
     int time_period;
 
@@ -28,6 +29,7 @@ interface uart_intf;
             parityType = uart_default_config.parityType;
             numDataBits = uart_default_config.numDataBits;
             numStopBits = uart_default_config.numStopBits;
+            rx_int_en = uart_default_config.rx_int_en;
             baudRate = uart_default_config.baudRate;
             time_period = 1e9 / uart_default_config.baudRate;
         end else begin
@@ -35,6 +37,7 @@ interface uart_intf;
             parityType = _uart_config.parityType;
             numDataBits = _uart_config.numDataBits;
             numStopBits = _uart_config.numStopBits;
+            rx_int_en = _uart_config.rx_int_en;
             baudRate = _uart_config.baudRate;
             time_period = 1e9 / _uart_config.baudRate;
         end
@@ -47,6 +50,7 @@ interface uart_intf;
         _uart_config.parityType = parityType;
         _uart_config.numDataBits = numDataBits;
         _uart_config.numStopBits = numStopBits;
+        _uart_config.rx_int_en = rx_int_en;
         _uart_config.baudRate = baudRate;
 
     endtask
@@ -102,7 +106,7 @@ interface uart_intf;
                 `uvm_info("UART_INTF", "SAMPLING INIT", UVM_HIGH)
                 #(time_period / 2);
             end else if (recv_rx_state == START) begin
-                if (rx != '0) `uvm_error("UART_INTF", "Rx Start bit violation")
+                if (rx != '0) `uvm_error("UART_INTF_ERROR", "Rx Start bit violation")
                 `uvm_info("UART_INTF", "SAMPLING START", UVM_HIGH)
                 recv_rx_state <= DATA;
                 #(time_period);
@@ -119,19 +123,25 @@ interface uart_intf;
             end else if (recv_rx_state == tb_pkg::PARITY) begin
                 if (parityType) begin
                     if (rx != ~(^data)) begin
-                        `uvm_error("UART_INTF", "Rx Parity bit violation");
+                        `uvm_error("UART_INTF_ERROR", "Rx Parity bit violation");
                         parityOK = '0;
-                    end else parityOK = '1;
+                    end else begin
+                        `uvm_info("UART_INTF", "Rx Parity bit Preserved", UVM_LOW);
+                        parityOK = '1;
+                    end
                 end else begin
                     if (rx != (^data)) begin
-                        `uvm_error("UART_INTF", "Rx Parity bit violation");
+                        `uvm_error("UART_INTF_ERROR", "Rx Parity bit violation");
                         parityOK = '0;
-                    end else parityOK = '1;
+                    end else begin
+                        `uvm_info("UART_INTF", "Rx Parity bit Preserved", UVM_LOW);
+                        parityOK = '1;
+                    end
                 end
                 recv_rx_state <= STOP;
                 #(time_period);
             end else if (recv_rx_state == STOP) begin
-                if (rx != '1) `uvm_error("UART_INTF", "Rx Stop bit violation")
+                if (rx != '1) `uvm_error("UART_INTF_ERROR", "Rx Stop bit violation")
                 `uvm_info("UART_INTF", "SAMPLING STOP", UVM_HIGH)
                 recv_rx_state <= tb_pkg::IDLE;
                 break;
@@ -147,7 +157,7 @@ interface uart_intf;
                 tx_state <= START;
                 #(time_period / 2);
             end else if (tx_state == START) begin
-                if (tx != '0) `uvm_error("UART_INTF", "Tx Start bit violation")
+                if (tx != '0) `uvm_error("UART_INTF_ERROR", "Tx Start bit violation")
                 tx_state <= DATA;
                 #(time_period);
             end else if (tx_state == DATA) begin
@@ -162,19 +172,25 @@ interface uart_intf;
             end else if (tx_state == tb_pkg::PARITY) begin
                 if (parityType) begin
                     if (tx != ~(^data)) begin
-                        `uvm_error("UART_INTF", "Tx Parity bit violation");
+                        `uvm_error("UART_INTF_ERROR", "Tx Parity bit violation");
                         parityOK = '0;
-                    end else parityOK = '1;
+                    end else begin
+                        `uvm_info("UART_INTF", "Tx Parity bit Preserved", UVM_LOW);
+                        parityOK = '1;
+                    end
                 end else begin
                     if (tx != (^data)) begin
-                        `uvm_error("UART_INTF", "Tx Parity bit violation");
+                        `uvm_error("UART_INTF_ERROR", "Tx Parity bit violation");
                         parityOK = '0;
-                    end else parityOK = '1;
+                    end else begin
+                        `uvm_info("UART_INTF", "Tx Parity bit Preserved", UVM_LOW);
+                        parityOK = '1;
+                    end
                 end
                 tx_state <= STOP;
                 #(time_period);
             end else if (tx_state == STOP) begin
-                if (tx != '1) `uvm_error("UART_INTF", "Tx Stop bit violation")
+                if (tx != '1) `uvm_error("UART_INTF_ERROR", "Tx Stop bit violation")
                 tx_state <= tb_pkg::IDLE;
                 break;
             end

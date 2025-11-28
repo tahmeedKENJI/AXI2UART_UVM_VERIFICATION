@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="uvm_tb_top.wdb" id="1">
+         <top_modules>
+            <top_module name="\$unit_cf_math_pkg_sv_3218407450 " />
+            <top_module name="apb_pkg" />
+            <top_module name="axi_pkg" />
+            <top_module name="base_pkg" />
+            <top_module name="std" />
+            <top_module name="tb_pkg" />
+            <top_module name="uvm_pkg" />
+            <top_module name="uvm_tb_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="16.360000001 ms"></ZoomEndTime>
+      <Cursor1Time time="0.208569000 ms"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="276"></NameColumnWidth>
+      <ValueColumnWidth column_width="116"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="18" />
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_tb_intf/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_tb_intf/rst_n">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/axi_req">
+      <obj_property name="ElementShortName">axi_req</obj_property>
+      <obj_property name="ObjectShortName">axi_req</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/axi_req.aw">
+         <obj_property name="ElementShortName">.aw</obj_property>
+         <obj_property name="ObjectShortName">.aw</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_axi_intf/axi_req.aw_valid">
+         <obj_property name="ElementShortName">.aw_valid</obj_property>
+         <obj_property name="ObjectShortName">.aw_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/axi_req.w">
+         <obj_property name="ElementShortName">.w</obj_property>
+         <obj_property name="ObjectShortName">.w</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_axi_intf/axi_req.w_valid">
+         <obj_property name="ElementShortName">.w_valid</obj_property>
+         <obj_property name="ObjectShortName">.w_valid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_axi_intf/axi_req.b_ready">
+         <obj_property name="ElementShortName">.b_ready</obj_property>
+         <obj_property name="ObjectShortName">.b_ready</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/axi_req.ar">
+         <obj_property name="ElementShortName">.ar</obj_property>
+         <obj_property name="ObjectShortName">.ar</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_axi_intf/axi_req.ar_valid">
+         <obj_property name="ElementShortName">.ar_valid</obj_property>
+         <obj_property name="ObjectShortName">.ar_valid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_axi_intf/axi_req.r_ready">
+         <obj_property name="ElementShortName">.r_ready</obj_property>
+         <obj_property name="ObjectShortName">.r_ready</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/axi_resp">
+      <obj_property name="ElementShortName">axi_resp</obj_property>
+      <obj_property name="ObjectShortName">axi_resp</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_axi_intf/axi_resp.aw_ready">
+         <obj_property name="ElementShortName">.aw_ready</obj_property>
+         <obj_property name="ObjectShortName">.aw_ready</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_axi_intf/axi_resp.ar_ready">
+         <obj_property name="ElementShortName">.ar_ready</obj_property>
+         <obj_property name="ObjectShortName">.ar_ready</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_axi_intf/axi_resp.w_ready">
+         <obj_property name="ElementShortName">.w_ready</obj_property>
+         <obj_property name="ObjectShortName">.w_ready</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_axi_intf/axi_resp.b_valid">
+         <obj_property name="ElementShortName">.b_valid</obj_property>
+         <obj_property name="ObjectShortName">.b_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/axi_resp.b">
+         <obj_property name="ElementShortName">.b</obj_property>
+         <obj_property name="ObjectShortName">.b</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_axi_intf/axi_resp.r_valid">
+         <obj_property name="ElementShortName">.r_valid</obj_property>
+         <obj_property name="ObjectShortName">.r_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/axi_resp.r">
+         <obj_property name="ElementShortName">.r</obj_property>
+         <obj_property name="ObjectShortName">.r</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_uart_intf/tx">
+      <obj_property name="ElementShortName">tx</obj_property>
+      <obj_property name="ObjectShortName">tx</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_uart_intf/rx">
+      <obj_property name="ElementShortName">rx</obj_property>
+      <obj_property name="ObjectShortName">rx</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_uart_intf/tx_state">
+      <obj_property name="ElementShortName">tx_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_state[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_uart_intf/send_rx_state">
+      <obj_property name="ElementShortName">send_rx_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">send_rx_state[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_uart_intf/recv_rx_state">
+      <obj_property name="ElementShortName">recv_rx_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">recv_rx_state[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_uart_intf/parityEnable">
+      <obj_property name="ElementShortName">parityEnable</obj_property>
+      <obj_property name="ObjectShortName">parityEnable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_uart_intf/parityType">
+      <obj_property name="ElementShortName">parityType</obj_property>
+      <obj_property name="ObjectShortName">parityType</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_uart_intf/numDataBits">
+      <obj_property name="ElementShortName">numDataBits[3:0]</obj_property>
+      <obj_property name="ObjectShortName">numDataBits[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_uart_intf/numStopBits">
+      <obj_property name="ElementShortName">numStopBits[1:0]</obj_property>
+      <obj_property name="ObjectShortName">numStopBits[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_uart_intf/rx_int_en">
+      <obj_property name="ElementShortName">rx_int_en</obj_property>
+      <obj_property name="ObjectShortName">rx_int_en</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_uart_intf/baudRate">
+      <obj_property name="ElementShortName">baudRate[31:0]</obj_property>
+      <obj_property name="ObjectShortName">baudRate[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_uart_intf/time_period">
+      <obj_property name="ElementShortName">time_period[31:0]</obj_property>
+      <obj_property name="ObjectShortName">time_period[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_uart_intf/isConfigured">
+      <obj_property name="ElementShortName">isConfigured</obj_property>
+      <obj_property name="ObjectShortName">isConfigured</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/irq_o">
+      <obj_property name="ElementShortName">irq_o</obj_property>
+      <obj_property name="ObjectShortName">irq_o</obj_property>
+   </wvobject>
+</wave_config>

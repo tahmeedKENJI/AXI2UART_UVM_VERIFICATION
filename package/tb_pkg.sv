@@ -30,6 +30,7 @@ package tb_pkg;
         logic parityType;
         logic [3:0] numDataBits;
         logic [1:0] numStopBits;
+        logic rx_int_en;
         int baudRate;
     } uart_config_t;
 
@@ -38,6 +39,7 @@ package tb_pkg;
         parityType   : 1'b0, // 0: Even, 1: Odd
         numDataBits  : 4'd8,
         numStopBits  : 2'd1,
+        rx_int_en    : 1'b1,
         baudRate     : 9600
     };
     

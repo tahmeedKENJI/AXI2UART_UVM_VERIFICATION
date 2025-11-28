@@ -24,6 +24,7 @@ DEFINITION  := -L uvm
 DEFINITION  += -d USE_AXI
 
 UVM_VERBOSITY ?= UVM_LOW
+TESTNAME ?= base_test
 
 TESTPLUSARG := --testplusarg UVM_VERBOSITY=${UVM_VERBOSITY}
 TESTPLUSARG += --testplusarg TESTNAME=${TESTNAME}
@@ -179,4 +180,5 @@ xsim:
 	@echo ""                                         | tee -a log.debug
 	@cd build; xsim ${TOP} ${TESTPLUSARG} ${RUNTYPE} | tee -a ../log.debug
 
+compile: clean build xvlog xelab
 run: clean build xvlog xelab xsim

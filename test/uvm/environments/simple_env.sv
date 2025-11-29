@@ -25,10 +25,14 @@ class simple_env extends uvm_env;
     virtual function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
         u_tb_agent.u_tb_monitor.tb_analysis_port.connect(u_scoreboard.tb_analysis_imp);
+
         u_uart_agent.u_uart_monitor.rx_analysis_port.connect(u_scoreboard.rx_analysis_imp);
         u_uart_agent.u_uart_monitor.tx_analysis_port.connect(u_scoreboard.tx_analysis_imp);
-        u_axi_agent.u_axi_monitor.req_analysis_port.connect(u_scoreboard.req_analysis_imp);
-        u_axi_agent.u_axi_monitor.rsp_analysis_port.connect(u_scoreboard.rsp_analysis_imp);
+
+        u_axi_agent.u_axi_monitor.w_req_analysis_port.connect(u_scoreboard.w_req_analysis_imp);
+        u_axi_agent.u_axi_monitor.w_rsp_analysis_port.connect(u_scoreboard.w_rsp_analysis_imp);
+        u_axi_agent.u_axi_monitor.r_req_analysis_port.connect(u_scoreboard.r_req_analysis_imp);
+        u_axi_agent.u_axi_monitor.r_rsp_analysis_port.connect(u_scoreboard.r_rsp_analysis_imp);
     endfunction
 
 endclass

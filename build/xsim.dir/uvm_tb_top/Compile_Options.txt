@@ -1,0 +1,1 @@
+"uvm_tb_top" -s "uvm_tb_top" -timescale "1ns/1ps" -debug "typical" 

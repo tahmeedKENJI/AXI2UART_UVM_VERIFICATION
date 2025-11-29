@@ -78,6 +78,7 @@ class axi_monitor extends uvm_monitor;
             u_axi_intf.package_rxactn(addr, data, len);
             for (int i = 0; i <= len; i++) begin
                 r_req.addr = addr;
+                r_req.data = data[i];
                 r_rsp.data = data[i];
                 r_req_analysis_port.write(r_req);
                 r_rsp_analysis_port.write(r_rsp);

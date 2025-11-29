@@ -1,0 +1,2 @@
+  CREATE_STREAM @0 {NAME:u_apply_reset_sequence T:Transactions SCOPE:uvm_test_top.u_env.u_tb_agent.u_tb_sequencer STREAM:1292}
+  CREATE_STREAM @165000 {NAME:u_seq_write T:Transactions SCOPE:uvm_test_top.u_env.u_axi_agent.u_axi_w_sequencer STREAM:1413}

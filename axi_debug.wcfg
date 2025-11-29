@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="uvm_tb_top.wdb" id="1">
+         <top_modules>
+            <top_module name="\$unit_cf_math_pkg_sv_4249329940 " />
+            <top_module name="apb_pkg" />
+            <top_module name="axi_pkg" />
+            <top_module name="base_pkg" />
+            <top_module name="std" />
+            <top_module name="tb_pkg" />
+            <top_module name="uvm_pkg" />
+            <top_module name="uvm_tb_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="693.501 ns"></ZoomEndTime>
+      <Cursor1Time time="245.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="276"></NameColumnWidth>
+      <ValueColumnWidth column_width="116"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="57" />
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_axi_intf/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/axi_req">
+      <obj_property name="ElementShortName">axi_req</obj_property>
+      <obj_property name="ObjectShortName">axi_req</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/axi_resp">
+      <obj_property name="ElementShortName">axi_resp</obj_property>
+      <obj_property name="ObjectShortName">axi_resp</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/aw_current">
+      <obj_property name="ElementShortName">aw_current</obj_property>
+      <obj_property name="ObjectShortName">aw_current</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/w_current">
+      <obj_property name="ElementShortName">w_current</obj_property>
+      <obj_property name="ObjectShortName">w_current</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/b_current">
+      <obj_property name="ElementShortName">b_current</obj_property>
+      <obj_property name="ObjectShortName">b_current</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/ar_current">
+      <obj_property name="ElementShortName">ar_current</obj_property>
+      <obj_property name="ObjectShortName">ar_current</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/r_current">
+      <obj_property name="ElementShortName">r_current</obj_property>
+      <obj_property name="ObjectShortName">r_current</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/aw_current_debug">
+      <obj_property name="ElementShortName">aw_current_debug</obj_property>
+      <obj_property name="ObjectShortName">aw_current_debug</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/w_current_debug">
+      <obj_property name="ElementShortName">w_current_debug</obj_property>
+      <obj_property name="ObjectShortName">w_current_debug</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/b_current_debug">
+      <obj_property name="ElementShortName">b_current_debug</obj_property>
+      <obj_property name="ObjectShortName">b_current_debug</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/ar_current_debug">
+      <obj_property name="ElementShortName">ar_current_debug</obj_property>
+      <obj_property name="ObjectShortName">ar_current_debug</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_axi_intf/r_current_debug">
+      <obj_property name="ElementShortName">r_current_debug</obj_property>
+      <obj_property name="ObjectShortName">r_current_debug</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider14" type="divider">
+      <obj_property name="label">dut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/arst_ni">
+      <obj_property name="ElementShortName">arst_ni</obj_property>
+      <obj_property name="ObjectShortName">arst_ni</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/clk_i">
+      <obj_property name="ElementShortName">clk_i</obj_property>
+      <obj_property name="ObjectShortName">clk_i</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/req_i">
+      <obj_property name="ElementShortName">req_i</obj_property>
+      <obj_property name="ObjectShortName">req_i</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/uvm_tb_top/u_dut/req_i.aw">
+         <obj_property name="ElementShortName">.aw</obj_property>
+         <obj_property name="ObjectShortName">.aw</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/req_i.aw_valid">
+         <obj_property name="ElementShortName">.aw_valid</obj_property>
+         <obj_property name="ObjectShortName">.aw_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/uvm_tb_top/u_dut/req_i.w">
+         <obj_property name="ElementShortName">.w</obj_property>
+         <obj_property name="ObjectShortName">.w</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/req_i.w_valid">
+         <obj_property name="ElementShortName">.w_valid</obj_property>
+         <obj_property name="ObjectShortName">.w_valid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/req_i.b_ready">
+         <obj_property name="ElementShortName">.b_ready</obj_property>
+         <obj_property name="ObjectShortName">.b_ready</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/uvm_tb_top/u_dut/req_i.ar">
+         <obj_property name="ElementShortName">.ar</obj_property>
+         <obj_property name="ObjectShortName">.ar</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/req_i.ar_valid">
+         <obj_property name="ElementShortName">.ar_valid</obj_property>
+         <obj_property name="ObjectShortName">.ar_valid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/req_i.r_ready">
+         <obj_property name="ElementShortName">.r_ready</obj_property>
+         <obj_property name="ObjectShortName">.r_ready</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/resp_o">
+      <obj_property name="ElementShortName">resp_o</obj_property>
+      <obj_property name="ObjectShortName">resp_o</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/tx_o">
+      <obj_property name="ElementShortName">tx_o</obj_property>
+      <obj_property name="ObjectShortName">tx_o</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/rx_i">
+      <obj_property name="ElementShortName">rx_i</obj_property>
+      <obj_property name="ObjectShortName">rx_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/irq_o">
+      <obj_property name="ElementShortName">irq_o</obj_property>
+      <obj_property name="ObjectShortName">irq_o</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/mem_we">
+      <obj_property name="ElementShortName">mem_we</obj_property>
+      <obj_property name="ObjectShortName">mem_we</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/mem_waddr">
+      <obj_property name="ElementShortName">mem_waddr[5:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_waddr[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/mem_wdata">
+      <obj_property name="ElementShortName">mem_wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_wdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/mem_wstrb">
+      <obj_property name="ElementShortName">mem_wstrb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_wstrb[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/mem_wresp">
+      <obj_property name="ElementShortName">mem_wresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_wresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/mem_re">
+      <obj_property name="ElementShortName">mem_re</obj_property>
+      <obj_property name="ObjectShortName">mem_re</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/mem_raddr">
+      <obj_property name="ElementShortName">mem_raddr[5:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_raddr[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/mem_rdata">
+      <obj_property name="ElementShortName">mem_rdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_rdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/mem_rresp">
+      <obj_property name="ElementShortName">mem_rresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_rresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/ctrl_clk_en">
+      <obj_property name="ElementShortName">ctrl_clk_en</obj_property>
+      <obj_property name="ObjectShortName">ctrl_clk_en</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/tx_fifo_flush">
+      <obj_property name="ElementShortName">tx_fifo_flush</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_flush</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/rx_fifo_flush">
+      <obj_property name="ElementShortName">rx_fifo_flush</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_flush</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/cfg_parity_en">
+      <obj_property name="ElementShortName">cfg_parity_en</obj_property>
+      <obj_property name="ObjectShortName">cfg_parity_en</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/cfg_parity_type">
+      <obj_property name="ElementShortName">cfg_parity_type</obj_property>
+      <obj_property name="ObjectShortName">cfg_parity_type</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/cfg_stop_bits">
+      <obj_property name="ElementShortName">cfg_stop_bits</obj_property>
+      <obj_property name="ObjectShortName">cfg_stop_bits</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/cfg_rx_int_en">
+      <obj_property name="ElementShortName">cfg_rx_int_en</obj_property>
+      <obj_property name="ObjectShortName">cfg_rx_int_en</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/clk_div">
+      <obj_property name="ElementShortName">clk_div[31:0]</obj_property>
+      <obj_property name="ObjectShortName">clk_div[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/tx_fifo_count">
+      <obj_property name="ElementShortName">tx_fifo_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/rx_fifo_count">
+      <obj_property name="ElementShortName">rx_fifo_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/tx_fifo_data">
+      <obj_property name="ElementShortName">tx_fifo_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/tx_fifo_data_valid">
+      <obj_property name="ElementShortName">tx_fifo_data_valid</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_data_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/tx_fifo_data_ready">
+      <obj_property name="ElementShortName">tx_fifo_data_ready</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_data_ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/rx_fifo_data">
+      <obj_property name="ElementShortName">rx_fifo_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/rx_fifo_data_valid">
+      <obj_property name="ElementShortName">rx_fifo_data_valid</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_data_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/rx_fifo_data_ready">
+      <obj_property name="ElementShortName">rx_fifo_data_ready</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_data_ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/tx_data">
+      <obj_property name="ElementShortName">tx_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/tx_data_valid">
+      <obj_property name="ElementShortName">tx_data_valid</obj_property>
+      <obj_property name="ObjectShortName">tx_data_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/tx_data_ready">
+      <obj_property name="ElementShortName">tx_data_ready</obj_property>
+      <obj_property name="ObjectShortName">tx_data_ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/rx_data">
+      <obj_property name="ElementShortName">rx_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/rx_data_valid">
+      <obj_property name="ElementShortName">rx_data_valid</obj_property>
+      <obj_property name="ObjectShortName">rx_data_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/tx_clk">
+      <obj_property name="ElementShortName">tx_clk</obj_property>
+      <obj_property name="ObjectShortName">tx_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/uvm_tb_top/u_dut/rx_clk">
+      <obj_property name="ElementShortName">rx_clk</obj_property>
+      <obj_property name="ObjectShortName">rx_clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/tx_fifo_count_temp">
+      <obj_property name="ElementShortName">tx_fifo_count_temp[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_fifo_count_temp[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/rx_fifo_count_temp">
+      <obj_property name="ElementShortName">rx_fifo_count_temp[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_fifo_count_temp[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/MEM_SIZE">
+      <obj_property name="ElementShortName">MEM_SIZE[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MEM_SIZE[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/uvm_tb_top/u_dut/DATA_WIDTH">
+      <obj_property name="ElementShortName">DATA_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA_WIDTH[31:0]</obj_property>
+   </wvobject>
+</wave_config>

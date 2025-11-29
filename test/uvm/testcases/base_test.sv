@@ -55,7 +55,7 @@ class base_test extends uvm_test;
             end
         join
 
-        // repeat (2000000) @(posedge u_tb_intf.clk);
+        repeat (200000) @(posedge u_tb_intf.clk);
         phase.drop_objection(this);
     endtask
 

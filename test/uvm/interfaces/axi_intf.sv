@@ -40,6 +40,7 @@ interface axi_intf (
             recv_b(resp, bid);        
         join
         if (wid != bid) `uvm_error("AXI_INTF_ERROR", "Write Request and response ID mismatch")
+        if ((resp == 2) || (resp == 3)) `uvm_error("AXI_INTF_ERROR", "Slave Error: Write")
 
     endtask
 
@@ -54,6 +55,7 @@ interface axi_intf (
             for (int i = 0; i <= len; i++) begin
                 recv_r(resp[i], data[i], bid, last);
                 if (rid != bid) `uvm_error("AXI_INTF_ERROR", "Write Request and response ID mismatch")
+                if ((resp[i] == 2) || (resp[i] == 3)) `uvm_error("AXI_INTF_ERROR", "Slave Error: Read")
                 if (i == len && ~last) `uvm_error("AXI_INTF_ERROR", "No Last Read received") 
             end
         join
@@ -62,7 +64,7 @@ interface axi_intf (
 
     task send_aw(axi_addr_t addr, int len, int size, int burst, axi_id_t id = 0);
 
-        axi_req.aw = '0;
+        axi_req.aw <= '0;
 
         axi_req.aw_valid <= '1;
         axi_req.aw.id <= id;
@@ -80,7 +82,7 @@ interface axi_intf (
 
     task send_ar(axi_addr_t addr, int len, int size, int burst, axi_id_t id = 0);
 
-        axi_req.ar = '0;
+        axi_req.ar <= '0;
 
         axi_req.ar_valid <= '1;
         axi_req.ar.id <= id;
@@ -98,7 +100,7 @@ interface axi_intf (
 
     task send_w(axi_data_t data, axi_strb_t strb, logic last);
 
-        axi_req.w = '0;
+        axi_req.w <= '0;
         
         axi_req.w_valid <= '1;
         axi_req.w.data <= data;
@@ -144,40 +146,41 @@ interface axi_intf (
     task start_watch();      
         fork
             forever begin
+                @(posedge clk);
                 if ((axi_req.aw_valid && axi_resp.aw_ready)) begin
                     aw_queue.push_back(axi_req.aw);
                     aw_current_debug = axi_req.aw;
                 end
-                @(posedge clk);
             end
             forever begin
+                @(posedge clk);
                 if ((axi_req.w_valid && axi_resp.w_ready)) begin
                     w_queue.push_back(axi_req.w);
                     w_current_debug = axi_req.w;
+                    $display("%p\n", axi_req.w);
                 end
-                @(posedge clk);
             end
             forever begin
+                @(posedge clk);
                 if ((axi_req.b_ready && axi_resp.b_valid)) begin
                     b_queue.push_back(axi_resp.b);
                     b_current_debug = axi_resp.b;
                 end
-                @(posedge clk);
             end
 
             forever begin
+                @(posedge clk);
                 if ((axi_req.ar_valid && axi_resp.ar_ready)) begin
                     ar_queue.push_back(axi_req.ar);
                     ar_current_debug = axi_req.ar;
                 end
-                @(posedge clk);
             end
             forever begin
+                @(posedge clk);
                 if ((axi_req.r_ready && axi_resp.r_valid)) begin
                     r_queue.push_back(axi_resp.r);
                     r_current_debug = axi_resp.r;
                 end
-                @(posedge clk);
             end
         join
     endtask

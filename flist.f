@@ -76,6 +76,7 @@ ${ROOT_D}/test/uvm/components/axi/axi_agent.sv
 ${ROOT_D}/test/uvm/scoreboards/simple_scoreboard.sv
 ${ROOT_D}/test/uvm/environments/simple_env.sv
 ${ROOT_D}/test/uvm/testcases/base_test.sv
+${ROOT_D}/test/uvm/testcases/axi2tx_test.sv
 ${ROOT_D}/test/uvm/testcases/parity_check_test.sv
 ${ROOT_D}/test/uvm/testcases/stopbit_check_test.sv
 ${ROOT_D}/test/uvm/uvm_tb_top.sv

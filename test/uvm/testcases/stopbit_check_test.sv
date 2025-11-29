@@ -22,7 +22,7 @@ class stopbit_check_test extends base_test;
     endfunction
 
     virtual task configure_phase (uvm_phase phase);
-        num_uart_data = 2;
+        num_uart_data = 20;
         uart_config_1 = '{
             parityEnable : '0,
             parityType : '0,

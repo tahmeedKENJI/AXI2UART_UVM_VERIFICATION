@@ -1,10 +1,10 @@
 `include "dependencies.svh"
 
-class stopbit_check_test extends base_test;
+class rx2axi_test extends base_test;
 
-    `uvm_component_utils(stopbit_check_test)
+    `uvm_component_utils(rx2axi_test)
 
-    function new(string name="stopbit_check_test", uvm_component parent=null);
+    function new(string name="rx2axi_test", uvm_component parent=null);
         super.new(name, parent);
     endfunction
 
@@ -22,20 +22,12 @@ class stopbit_check_test extends base_test;
     endfunction
 
     virtual task configure_phase (uvm_phase phase);
-        num_uart_data = 10;
+        num_uart_data = 20;
         uart_config_1 = '{
             parityEnable : '0,
             parityType : '0,
             numDataBits : 8,
             numStopBits : 1,
-            rx_int_en : '1,
-            baudRate : 9600
-        };
-        uart_config_2 = '{
-            parityEnable : '0,
-            parityType : '0,
-            numDataBits : 8,
-            numStopBits : 2,
             rx_int_en : '1,
             baudRate : 9600
         };
@@ -48,32 +40,11 @@ class stopbit_check_test extends base_test;
         u_uart_intf.configure_uart('0, uart_config_1);
         send_uart_configuration(uart_config_1);
 
-        fork
-            begin
-                send_multi_axi_write(`TX_FIFO_DATA_REG, num_uart_data-1);
-            end
-            begin
-                repeat(num_uart_data) send_to_rx($urandom, '0);
-                @(posedge u_tb_intf.clk);
-                send_multi_axi_read(`RX_FIFO_DATA_REG, num_uart_data-1);
-            end
-        join
+        repeat(num_uart_data) send_to_rx($urandom, '0);
+        @(posedge u_tb_intf.clk);
+        send_multi_axi_read(`RX_FIFO_DATA_REG, num_uart_data-1);
 
-        u_uart_intf.configure_uart('0, uart_config_2);
-        send_uart_configuration(uart_config_2);
-
-        fork
-            begin
-                send_multi_axi_write(`TX_FIFO_DATA_REG, num_uart_data-1);
-            end
-            begin
-                repeat(num_uart_data) send_to_rx($urandom, '0);
-                @(posedge u_tb_intf.clk);
-                send_multi_axi_read(`RX_FIFO_DATA_REG, num_uart_data-1);
-            end
-        join
-
-        repeat (100000) @(posedge u_tb_intf.clk);
+        repeat (25e2) @(posedge u_tb_intf.clk);
 
         phase.drop_objection(this);
     endtask
@@ -82,7 +53,9 @@ class stopbit_check_test extends base_test;
         string testname;
         $value$plusargs("TESTNAME=%s", testname);
 
-        if (uvm_report_server::get_server().get_id_count("UART_INTF_ERROR") == 0) begin
+        if ((uvm_report_server::get_server().get_id_count("UART_INTF_ERROR") == 0)
+            && (uvm_report_server::get_server().get_id_count("AXI_INTF_ERROR") == 0)
+            && (uvm_report_server::get_server().get_id_count("RX_DATA_MISMATCH") == 0)) begin
             $display("\033[1;32mTEST PASSED: \033[0m%s", testname);
         end else begin
             $display("\033[1;31mTEST FAILED: \033[0m%s", testname);

@@ -151,7 +151,7 @@ interface axi_intf (
                 @(posedge clk);
             end
             forever begin
-                if ((axi_req.w_valid && axi_resp.w_ready)); begin
+                if ((axi_req.w_valid && axi_resp.w_ready)) begin
                     w_queue.push_back(axi_req.w);
                     w_current_debug = axi_req.w;
                 end

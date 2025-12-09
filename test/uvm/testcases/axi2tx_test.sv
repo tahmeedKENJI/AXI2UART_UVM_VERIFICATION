@@ -49,7 +49,7 @@ class axi2tx_test extends base_test;
 
     virtual function void report_phase(uvm_phase phase);
         string testname;
-        $value$plusargs("TESTNAME=%s", testname);
+        void'($value$plusargs("TESTNAME=%s", testname));
 
         if ((uvm_report_server::get_server().get_id_count("UART_INTF_ERROR") == 0)
             && (uvm_report_server::get_server().get_id_count("AXI_INTF_ERROR") == 0)

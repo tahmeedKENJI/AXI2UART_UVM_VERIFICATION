@@ -3,7 +3,8 @@
 #### AUTHOR: S. M. TAHMEED REZA 
 ####                            
 ####                            
-
+.SHELL=/bin/bash
+export SHELL=/bin/bash
 
 export ROOT_D   := ${shell realpath .}
 INC      := ${ROOT_D}/include
@@ -163,22 +164,22 @@ build:
 	@mkdir -p build
 
 xvlog:
-	@echo -e ""                                      | tee -a log.debug
-	@echo -e "//// COMPILATION STAGE ////"           | tee -a log.debug
-	@echo -e ""                                      | tee -a log.debug
-	@cd build; xvlog --sv -f ${FST} ${DEFINITION} | tee -a ../log.debug
+	@echo -e ""                                                         | tee -a log.debug
+	@echo -e "\033[1;34m//// COMPILATION STAGE ////\033[0m"             | tee -a log.debug
+	@echo -e ""                                                         | tee -a log.debug
+	@cd build; xvlog --sv -f ${FST} ${DEFINITION}                       | tee -a ../log.debug
 
 xelab:
-	@echo -e ""                                                            | tee -a log.debug
-	@echo -e "//// ELABORATION STAGE ////"                                 | tee -a log.debug
-	@echo -e ""                                                            | tee -a log.debug
+	@echo -e ""                                                         | tee -a log.debug
+	@echo -e "\033[1;34m//// ELABORATION STAGE ////\033[0m"             | tee -a log.debug
+	@echo -e ""                                                         | tee -a log.debug
 	@cd build; xelab ${TOP} -s ${TOP} -timescale 1ns/1ps -debug typical | tee -a ../log.debug
 
 xsim:
-	@echo -e ""                                         | tee -a log.debug
-	@echo -e "//// SIMULATION STAGE ////"               | tee -a log.debug
-	@echo -e ""                                         | tee -a log.debug
-	@cd build; xsim ${TOP} ${TESTPLUSARG} ${RUNTYPE} | tee -a ../log.debug
+	@echo -e ""                                                          | tee -a log.debug
+	@echo -e "\033[1;34m//// SIMULATION STAGE ////\033[0m"               | tee -a log.debug
+	@echo -e ""                                                          | tee -a log.debug
+	@cd build; xsim ${TOP} ${TESTPLUSARG} ${RUNTYPE}                     | tee -a ../log.debug
 
 compile: clean build xvlog xelab
 run: clean build xvlog xelab xsim

@@ -155,8 +155,8 @@ class base_test extends uvm_test;
 
 
   task recv_uart_configuration();
-    send_axi_(`CTRL_REG);
-    send_axi_(`CFG_REG);
+    send_axi_read(`CTRL_REG);
+    send_axi_read(`CFG_REG);
   endtask
 
 endclass

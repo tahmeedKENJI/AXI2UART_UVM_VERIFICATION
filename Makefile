@@ -28,7 +28,7 @@ TESTNAME ?= base_test
 
 TESTPLUSARG := --testplusarg UVM_VERBOSITY=${UVM_VERBOSITY}
 TESTPLUSARG += --testplusarg TESTNAME=${TESTNAME}
-TESTPLUSARG += --testplusarg CLKFREQMHZ=${CLKFREQMHZ}
+# TESTPLUSARG += -testplusarg CLKFREQMHZ=${CLKFREQMHZ}
 
 RUNTYPE     ?= --runall
 GUI         ?= 0
@@ -155,7 +155,7 @@ flist:
 ####
 
 clean:
-	@echo "\033[7;31m//// PERFORMING CLEAN-UP... ///\033[0m"
+	@echo -e "\033[7;31m//// PERFORMING CLEAN-UP... ///\033[0m"
 	@rm -rf build
 	@rm -rf log.debug
 
@@ -163,21 +163,21 @@ build:
 	@mkdir -p build
 
 xvlog:
-	@echo ""                                      | tee -a log.debug
-	@echo "//// COMPILATION STAGE ////"           | tee -a log.debug
-	@echo ""                                      | tee -a log.debug
+	@echo -e ""                                      | tee -a log.debug
+	@echo -e "//// COMPILATION STAGE ////"           | tee -a log.debug
+	@echo -e ""                                      | tee -a log.debug
 	@cd build; xvlog --sv -f ${FST} ${DEFINITION} | tee -a ../log.debug
 
 xelab:
-	@echo ""                                                            | tee -a log.debug
-	@echo "//// ELABORATION STAGE ////"                                 | tee -a log.debug
-	@echo ""                                                            | tee -a log.debug
+	@echo -e ""                                                            | tee -a log.debug
+	@echo -e "//// ELABORATION STAGE ////"                                 | tee -a log.debug
+	@echo -e ""                                                            | tee -a log.debug
 	@cd build; xelab ${TOP} -s ${TOP} -timescale 1ns/1ps -debug typical | tee -a ../log.debug
 
 xsim:
-	@echo ""                                         | tee -a log.debug
-	@echo "//// SIMULATION STAGE ////"               | tee -a log.debug
-	@echo ""                                         | tee -a log.debug
+	@echo -e ""                                         | tee -a log.debug
+	@echo -e "//// SIMULATION STAGE ////"               | tee -a log.debug
+	@echo -e ""                                         | tee -a log.debug
 	@cd build; xsim ${TOP} ${TESTPLUSARG} ${RUNTYPE} | tee -a ../log.debug
 
 compile: clean build xvlog xelab
